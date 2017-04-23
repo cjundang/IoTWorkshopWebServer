@@ -26,6 +26,17 @@
 	    $nres = $res->withJson($result);
 	    return $nres;
 	});
+	
+	$app->get('/sensors/light/{value}', function($req, $res){
+	    $light = $req->getAttribute('value');
+	    $result = array( 
+	    	"ip" => $_SERVER['REMOTE_ADDR'],
+	    	"ts" => time(),
+	    	"value" => $light
+	    	);
+	    $nres = $res->withJson($result);
+	    return $nres;
+	});
 
 	$app->post('/books/search/', function($req, $res){
     	$keyword = $res->getParam('keyword');
